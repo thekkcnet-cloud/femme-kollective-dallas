@@ -14,3 +14,4 @@
 .department-card.card-5:before{background:linear-gradient(0deg,rgba(0,0,0,.25),transparent 55%)}
 .department-card.card-3{background:linear-gradient(0deg,rgba(5,0,0,.9),rgba(70,0,8,.12)),url('/lap-chair.png') center 42%/cover no-repeat}
 .department-card.card-3:before{background:linear-gradient(0deg,rgba(0,0,0,.3),transparent 55%)}
+.instructor-grid.instructor-single{grid-template-columns:minmax(230px,280px)}
