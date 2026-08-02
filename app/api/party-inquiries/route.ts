@@ -4,6 +4,7 @@ import { getSupabaseAdmin } from "@/lib/supabase-admin";
 const allowedPackages = new Set(["Intro Party", "Signature Party", "VIP Party"]);
 const allowedOccasions = new Set(["Bachelorette", "Birthday", "Girls Night Out", "Other"]);
 const allowedContactMethods = new Set(["Call", "Text", "Email"]);
+const allowedPartyTypes = new Set(["Pole", "Heels", "Lap/Chair"]);
 const allowedAddOns = new Set(["Extra 30 minutes ($80)", "Professional videographer ($50)", "Mini cake + candles ($20)", "Money gun ($5)", "Props ($10)", "Custom routine ($25)"]);
 
 export async function POST(request: Request) {
@@ -18,8 +19,8 @@ export async function POST(request: Request) {
     if (fullName.length < 2 || !/^\S+@\S+\.\S+$/.test(email) || phone.length < 7) {
       return NextResponse.json({ error: "Please enter your name, email, and phone number." }, { status: 400 });
     }
-    if (!allowedContactMethods.has(body.contactMethod) || !allowedPackages.has(body.partyPackage) || !allowedOccasions.has(body.occasion)) {
-      return NextResponse.json({ error: "Please complete the contact, package, and occasion fields." }, { status: 400 });
+    if (!allowedContactMethods.has(body.contactMethod) || !allowedPackages.has(body.partyPackage) || !allowedPartyTypes.has(body.partyType) || !allowedOccasions.has(body.occasion)) {
+      return NextResponse.json({ error: "Please complete the contact, party type, package, and occasion fields." }, { status: 400 });
     }
     if (!body.preferredDate || !body.preferredTime || !Number.isInteger(guestCount) || guestCount < 2 || guestCount > 60) {
       return NextResponse.json({ error: "Please provide a valid date, time, and guest count." }, { status: 400 });
@@ -36,6 +37,7 @@ export async function POST(request: Request) {
       preferred_date: body.preferredDate,
       preferred_time: body.preferredTime,
       party_package: body.partyPackage,
+      party_type: body.partyType,
       guest_count: guestCount,
       occasion: body.occasion,
       all_guests_21: body.allGuests21,
