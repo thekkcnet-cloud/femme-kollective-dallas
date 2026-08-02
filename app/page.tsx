@@ -9,9 +9,9 @@ const departments = [
 const scheduleUrl = "https://www.thekkc.net/schedule";
 
 const plans = [
-  { name: "Femme Essentials", buttonLabel: "Choose Essentials", price: "$119", cadence: "/mo", detail: "4 classes / month", perks: ["Four classes each month", "Any Femme class style", "Book through your Wix account"] },
-  { name: "Femme Plus", buttonLabel: "Choose Femme Plus", price: "$89", cadence: "/2 weeks", detail: "8 classes / month · $178 monthly", perks: ["Eight classes each month", "Any Femme class style", "Book through your Wix account"] },
-  { name: "Femme Unlimited", buttonLabel: "Choose Unlimited", price: "$125", cadence: "/mo", detail: "Unlimited classes · first 3 months", perks: ["Unlimited Femme classes", "Three-month founding rate", "Book through your Wix account"], vip: true },
+  { name: "Femme Starter Membership", buttonLabel: "Choose Starter", price: "$79", cadence: "/mo", detail: "4 classes / month", perks: ["Four classes each month", "Any eligible Femme class", "Book through your Wix account"] },
+  { name: "Femme Enthusiast Membership", buttonLabel: "Choose Enthusiast", price: "$119", cadence: "/mo", detail: "8 classes / month", perks: ["Eight classes each month", "10% off Femme merchandise", "Book through your Wix account"] },
+  { name: "Femme Unlimited VIP Membership", buttonLabel: "Choose Unlimited VIP", price: "$149", cadence: "/mo", detail: "Unlimited classes", perks: ["Unlimited eligible Femme classes", "Member-only events", "Book through your Wix account"], vip: true },
 ];
 
 const instructors = [
@@ -36,7 +36,7 @@ export default function Home() {
           <p className="eyebrow"><i /> A women-centered movement studio · Dallas</p>
           <h1>Reclaim your<br /><em>confidence.</em></h1>
           <p className="hero-copy">Reconnect with your flow through pole, heels, and sensual movement in a space made for every version of you.</p>
-          <div className="hero-actions"><a className="button button-primary" href="#membership">Claim 5 classes for $89 <span>→</span></a><a className="button button-ghost" href="#classes">View class schedule</a></div>
+          <div className="hero-actions"><a className="button button-primary" href="#membership">Claim 5 classes for $39 <span>→</span></a><a className="button button-ghost" href="#classes">View class schedule</a></div>
           <div className="hero-foot"><div className="avatars"><b>J</b><b>M</b><b>A</b><b>S</b></div><p><strong>500+ women</strong> moving with us in Dallas</p></div>
         </div>
         <div className="hero-side-note">move like you mean it <span>✦</span></div>
@@ -59,8 +59,8 @@ export default function Home() {
       </section>
 
       <section className="pricing" id="membership"><div className="container"><div className="pricing-top"><div><p className="eyebrow red"><i /> Come as you are</p><h2>Start your<br /><em>Femme era.</em></h2></div><p>Choose the rhythm that feels right. No contracts. Just your next move.</p></div>
-        <div className="intro-offer"><div className="best-ribbon">NEW STUDENTS</div><div><p className="eyebrow">Your first step</p><h3>First Time Student<br />Special</h3><p className="offer-copy">Five classes. Sixty days.<br />Explore every side of Femme.</p></div><div className="offer-price"><small>One-time</small><b>$89</b><small>Valid for 60 days</small></div><a className="button button-light" href={scheduleUrl} target="_top">Book with Wix <span>→</span></a></div>
-        <div className="plan-grid">{plans.map((plan) => <article className={`plan ${plan.vip ? "vip" : ""}`} key={plan.name}>{plan.vip && <div className="vip-label">✦ FOUNDING RATE</div>}<p className="plan-name">{plan.name}</p><p className="plan-price">{plan.price}<small>{plan.cadence}</small></p><p className="plan-detail">{plan.detail}</p><ul>{plan.perks.map((perk) => <li key={perk}><span>✓</span>{perk}</li>)}</ul><a href={scheduleUrl} target="_top" className="plan-link">{plan.buttonLabel} <span>→</span></a></article>)}</div>
+        <div className="intro-offer"><div className="best-ribbon">NEW STUDENTS</div><div><p className="eyebrow">Your first step</p><h3>Femme First Timer<br />Special</h3><p className="offer-copy">Five classes. Sixty days.<br />Explore every side of Femme.</p></div><div className="offer-price"><small>One-time</small><b>$39</b><small>Valid for 60 days</small></div><a className="button button-light" href={scheduleUrl} target="_top">Book with Wix <span>→</span></a></div>
+        <div className="plan-grid">{plans.map((plan) => <article className={`plan ${plan.vip ? "vip" : ""}`} key={plan.name}>{plan.vip && <div className="vip-label">✦ MOST FEMME</div>}<p className="plan-name">{plan.name}</p><p className="plan-price">{plan.price}<small>{plan.cadence}</small></p><p className="plan-detail">{plan.detail}</p><ul>{plan.perks.map((perk) => <li key={perk}><span>✓</span>{perk}</li>)}</ul><a href={scheduleUrl} target="_top" className="plan-link">{plan.buttonLabel} <span>→</span></a></article>)}</div>
         <p className="drop-in">Prefer one class at a time? <strong>Single-class pricing is shown in Wix Bookings.</strong> <a href={scheduleUrl} target="_top">View classes →</a></p>
         <p className="pricing-schedule">Already have a pass? <a href={scheduleUrl} target="_top">Book from the live Wix calendar →</a></p>
       </div></section>
