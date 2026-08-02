@@ -25,7 +25,13 @@ export function CheckoutButton({ plan, className, children }: CheckoutButtonProp
       });
       const payload = (await response.json()) as { url?: string; error?: string };
       if (!response.ok || !payload.url) throw new Error(payload.error ?? "Checkout is unavailable");
-      window.location.assign(payload.url);
+      // The site is embedded on Wix, so send checkout to the top-level window.
+      // This prevents Stripe from being trapped inside the page iframe.
+      if (window.top) {
+        window.top.location.href = payload.url;
+      } else {
+        window.location.assign(payload.url);
+      }
     } catch (checkoutError) {
       setError(checkoutError instanceof Error ? checkoutError.message : "Checkout is unavailable");
       setLoading(false);
