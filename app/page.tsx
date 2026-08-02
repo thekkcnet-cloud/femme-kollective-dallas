@@ -7,9 +7,9 @@ const departments = [
 ];
 
 const plans = [
-  { name: "Starter", price: "$79", detail: "4 classes / month", perks: ["Four classes each month", "Easy online booking", "Cancel anytime"] },
-  { name: "Enthusiast", price: "$119", detail: "8 classes / month", perks: ["Eight classes each month", "10% off Femme merch", "Priority waitlist access"] },
-  { name: "Unlimited VIP", price: "$149", detail: "Unlimited classes", perks: ["Unlimited studio classes", "Member-only events", "10% off Femme merch"], vip: true },
+  { slug: "starter" as const, name: "Starter", price: "$79", detail: "4 classes / month", perks: ["Four classes each month", "Easy online booking", "Cancel anytime"] },
+  { slug: "enthusiast" as const, name: "Enthusiast", price: "$119", detail: "8 classes / month", perks: ["Eight classes each month", "10% off Femme merch", "Priority waitlist access"] },
+  { slug: "unlimited-vip" as const, name: "Unlimited VIP", price: "$149", detail: "Unlimited classes", perks: ["Unlimited studio classes", "Member-only events", "10% off Femme merch"], vip: true },
 ];
 
 const instructors = [
@@ -57,9 +57,9 @@ export default function Home() {
       </section>
 
       <section className="pricing" id="membership"><div className="container"><div className="pricing-top"><div><p className="eyebrow red"><i /> Come as you are</p><h2>Start your<br /><em>Femme era.</em></h2></div><p>Choose the rhythm that feels right. No contracts. Just your next move.</p></div>
-        <div className="intro-offer"><div className="best-ribbon">BEST VALUE</div><div><p className="eyebrow">Your first step</p><h3>The First Timer<br />Special</h3><p className="offer-copy">Three classes. Two weeks.<br />One very good decision.</p></div><div className="offer-price"><small>Just</small><b>$39</b><small>Valid for 14 days</small></div><a className="button button-light" href="https://www.thekkc.net/femmekollective">Claim your offer <span>→</span></a></div>
-        <div className="plan-grid">{plans.map((plan) => <article className={`plan ${plan.vip ? "vip" : ""}`} key={plan.name}>{plan.vip && <div className="vip-label">✦ MOST FEMME</div>}<p className="plan-name">{plan.name}</p><p className="plan-price">{plan.price}<small>/mo</small></p><p className="plan-detail">{plan.detail}</p><ul>{plan.perks.map((perk) => <li key={perk}><span>✓</span>{perk}</li>)}</ul><a href="https://www.thekkc.net/femmekollective" className="plan-link">Choose {plan.name} <span>→</span></a></article>)}</div>
-        <p className="drop-in">Just dropping in? <strong>$30 / class</strong> <a href="https://www.thekkc.net/femmekollective">Book a single class →</a></p>
+        <div className="intro-offer"><div className="best-ribbon">BEST VALUE</div><div><p className="eyebrow">Your first step</p><h3>The First Timer<br />Special</h3><p className="offer-copy">Three classes. Two weeks.<br />One very good decision.</p></div><div className="offer-price"><small>Just</small><b>$39</b><small>Valid for 14 days</small></div><CheckoutButton className="button button-light" plan="first-timer">Claim your offer <span>→</span></CheckoutButton></div>
+        <div className="plan-grid">{plans.map((plan) => <article className={`plan ${plan.vip ? "vip" : ""}`} key={plan.name}>{plan.vip && <div className="vip-label">✦ MOST FEMME</div>}<p className="plan-name">{plan.name}</p><p className="plan-price">{plan.price}<small>/mo</small></p><p className="plan-detail">{plan.detail}</p><ul>{plan.perks.map((perk) => <li key={perk}><span>✓</span>{perk}</li>)}</ul><CheckoutButton plan={plan.slug} className="plan-link">Choose {plan.name} <span>→</span></CheckoutButton></article>)}</div>
+        <p className="drop-in">Just dropping in? <strong>$30 / class</strong> <CheckoutButton plan="drop-in">Book a single class →</CheckoutButton></p>
       </div></section>
 
       <section className="parties" id="parties"><div className="party-visual"><div className="party-arch" /><p>THE NIGHT<br />IS <em>YOURS.</em></p></div><div className="party-copy"><p className="eyebrow red"><i /> Private experiences</p><h2>Celebrate with<br />the <em>Kollective.</em></h2><p>Turn up the music and bring your people. From bachelorettes to birthdays to the girls&apos; night you&apos;ve been trying to plan, we&apos;ll make it a whole moment.</p><div className="party-tags"><span>Bachelorette</span><span>Birthday</span><span>Girls&apos; night out</span></div><a href="mailto:thekkc.net@gmail.com?subject=Femme%20Private%20Party" className="button button-primary">Inquire about a party <span>→</span></a></div></section>
@@ -72,3 +72,4 @@ export default function Home() {
     </main>
   );
 }
+import { CheckoutButton } from "@/components/checkout-button";
