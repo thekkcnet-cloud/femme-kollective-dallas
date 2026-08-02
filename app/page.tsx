@@ -28,7 +28,7 @@ export default function Home() {
         <nav className="nav container" aria-label="Main navigation">
           <a className="brand" href="#top"><span>FEMME</span> KOLLECTIVE</a>
           <div className="nav-links"><a href="#classes">Classes</a><a href="#membership">Membership</a><a href="#parties">Private parties</a></div>
-          <a className="nav-cta" href={scheduleUrl} target="_top">Book a class <span>↗</span></a>
+          <a className="nav-cta" href="#classes">View classes <span>↗</span></a>
         </nav>
         <div className="hero-glow" />
         <div className="hero-orbit orbit-one" /><div className="hero-orbit orbit-two" />
@@ -36,7 +36,7 @@ export default function Home() {
           <p className="eyebrow"><i /> A women-centered movement studio · Dallas</p>
           <h1>Reclaim your<br /><em>confidence.</em></h1>
           <p className="hero-copy">Reconnect with your flow through pole, heels, and sensual movement in a space made for every version of you.</p>
-          <div className="hero-actions"><a className="button button-primary" href="#membership">Claim 3 classes for $39 <span>→</span></a><a className="button button-ghost" href={scheduleUrl} target="_top">View class schedule</a></div>
+          <div className="hero-actions"><a className="button button-primary" href="#membership">Claim 3 classes for $39 <span>→</span></a><a className="button button-ghost" href="#classes">View class schedule</a></div>
           <div className="hero-foot"><div className="avatars"><b>J</b><b>M</b><b>A</b><b>S</b></div><p><strong>500+ women</strong> moving with us in Dallas</p></div>
         </div>
         <div className="hero-side-note">move like you mean it <span>✦</span></div>
@@ -54,8 +54,8 @@ export default function Home() {
 
       <section className="departments container" id="classes">
         <div className="section-heading split"><div><p className="eyebrow red"><i /> Find your flow</p><h2>Your movement,<br /><em>your rules.</em></h2></div><p>Come exactly as you are. Leave with a little more of yourself.</p></div>
-        <div className="department-grid">{departments.map(([number, title, copy, link], index) => <article className={`department-card card-${index + 1}`} key={title}><span className="card-number">{number}</span><div className="card-overlay" /><div className="department-copy"><h3>{title}</h3><p>{copy}</p><a href={scheduleUrl} target="_top">{link}</a></div><span className="card-spark">✦</span></article>)}</div>
-        <div className="schedule-callout"><span className="circle-arrow">↗</span><p>Not sure where to start? <strong>Find the class that fits your energy.</strong></p><a href={scheduleUrl} target="_top">Browse the schedule</a></div>
+        <div className="department-grid">{departments.map(([number, title, copy, link], index) => <article className={`department-card card-${index + 1}`} key={title}><span className="card-number">{number}</span><div className="card-overlay" /><div className="department-copy"><h3>{title}</h3><p>{copy}</p><a href="#membership">{link}</a></div><span className="card-spark">✦</span></article>)}</div>
+        <div className="schedule-callout"><span className="circle-arrow">↗</span><p>Not sure where to start? <strong>Find the class that fits your energy.</strong></p><a href="#membership">Choose your pass</a></div>
       </section>
 
       <section className="pricing" id="membership"><div className="container"><div className="pricing-top"><div><p className="eyebrow red"><i /> Come as you are</p><h2>Start your<br /><em>Femme era.</em></h2></div><p>Choose the rhythm that feels right. No contracts. Just your next move.</p></div>
@@ -71,7 +71,7 @@ export default function Home() {
 
       <section className="faq"><div className="container faq-grid"><div><p className="eyebrow red"><i /> You&apos;re wondering</p><h2>Let&apos;s make<br />this <em>easy.</em></h2><p className="faq-intro">Your only job is to show up. We&apos;ll take care of the rest.</p></div><div className="faq-list"><details open><summary>What do I wear?<span>+</span></summary><p>Wear something you can move in and feel good in. Fitted shorts or leggings and a tee are perfect for your first class. Heels are welcome for heels classes, but never required to start.</p></details><details><summary>Do I need any experience?<span>+</span></summary><p>Absolutely not. Beginner-friendly classes are built for your first spin, first strut, and every brave try in between.</p></details><details><summary>Is Femme for all body types?<span>+</span></summary><p>Yes. Full stop. Femme is designed as a judgment-free room for every body and every starting point.</p></details><details><summary>Where are you located?<span>+</span></summary><p>We&apos;re inside The Kreative Kollective Campus at 8438 Old Hickory Trail, Dallas, TX 75237.</p></details></div></div></section>
 
-      <footer><div className="footer-top container"><div><a className="brand" href="#top"><span>FEMME</span> KOLLECTIVE</a><p>Move. Feel. Become.</p></div><div className="footer-links"><a href={scheduleUrl} target="_top">Class schedule</a><a href="#membership">Membership</a><a href="#parties">Private parties</a><a href="mailto:thekkc.net@gmail.com">Contact</a></div><div className="footer-contact"><p>8438 Old Hickory Trail<br />Dallas, TX 75237</p><p><a href="mailto:thekkc.net@gmail.com">thekkc.net@gmail.com</a></p></div></div><div className="footer-bottom container"><p>© 2026 Femme Kollective · A Kreative Kollective Campus experience</p><div><a href="#top">Instagram</a><a href="#top">TikTok</a></div></div></footer>
+      <footer><div className="footer-top container"><div><a className="brand" href="#top"><span>FEMME</span> KOLLECTIVE</a><p>Move. Feel. Become.</p></div><div className="footer-links"><a href="#classes">Classes</a><a href="#membership">Membership</a><a href="#parties">Private parties</a><a href="mailto:thekkc.net@gmail.com">Contact</a></div><div className="footer-contact"><p>8438 Old Hickory Trail<br />Dallas, TX 75237</p><p><a href="mailto:thekkc.net@gmail.com">thekkc.net@gmail.com</a></p></div></div><div className="footer-bottom container"><p>© 2026 Femme Kollective · A Kreative Kollective Campus experience</p><div><a href="#top">Instagram</a><a href="#top">TikTok</a></div></div></footer>
     </main>
   );
 }
