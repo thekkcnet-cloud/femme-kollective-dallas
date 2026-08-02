@@ -12,6 +12,13 @@ const plans = [
   { name: "Unlimited VIP", price: "$149", detail: "Unlimited classes", perks: ["Unlimited studio classes", "Member-only events", "10% off Femme merch"], vip: true },
 ];
 
+const instructors = [
+  { number: "01", name: "Krystal P.", role: "Founder + Instructor", portrait: "p-one", detail: "Pole · Heels · Floorwork" },
+  { number: "02", name: "Your Name Here", role: "Future Pole Instructor", portrait: "p-two", detail: "Strength · Spins · Confidence", placeholder: true },
+  { number: "03", name: "Your Name Here", role: "Future Heels Instructor", portrait: "p-three", detail: "Choreo · Strut · Expression", placeholder: true },
+  { number: "04", name: "Your Name Here", role: "Future Floorwork Instructor", portrait: "p-four", detail: "Flow · Mobility · Feel-good movement", placeholder: true },
+];
+
 export default function Home() {
   return (
     <main>
@@ -57,7 +64,7 @@ export default function Home() {
 
       <section className="parties" id="parties"><div className="party-visual"><div className="party-arch" /><p>THE NIGHT<br />IS <em>YOURS.</em></p></div><div className="party-copy"><p className="eyebrow red"><i /> Private experiences</p><h2>Celebrate with<br />the <em>Kollective.</em></h2><p>Turn up the music and bring your people. From bachelorettes to birthdays to the girls&apos; night you&apos;ve been trying to plan, we&apos;ll make it a whole moment.</p><div className="party-tags"><span>Bachelorette</span><span>Birthday</span><span>Girls&apos; night out</span></div><a href="mailto:thekkc.net@gmail.com?subject=Femme%20Private%20Party" className="button button-primary">Inquire about a party <span>→</span></a></div></section>
 
-      <section className="instructors container"><div className="section-heading split"><div><p className="eyebrow red"><i /> Your hype woman</p><h2>Meet the woman<br />behind the <em>magic.</em></h2></div><p>A devoted teacher and your biggest fan from the very first eight count.</p></div><div className="instructor-grid instructor-single"><article><div className="portrait p-one"><span>01</span></div><h3>Krystal P.</h3><p>Founder + Instructor</p></article></div></section>
+      <section className="instructors container"><div className="section-heading split"><div><p className="eyebrow red"><i /> Your hype women</p><h2>Meet the women<br />behind the <em>magic.</em></h2></div><p>A growing team of devoted teachers and your biggest fans from the very first eight count.</p></div><div className="instructor-grid">{instructors.map((instructor) => <article className={instructor.placeholder ? "instructor-placeholder" : ""} key={instructor.number}><div className={`portrait ${instructor.portrait}`}><span>{instructor.number}</span>{instructor.placeholder && <div className="placeholder-badge">COMING SOON <b>✦</b></div>}</div><h3>{instructor.name}</h3><p>{instructor.role}</p><small>{instructor.detail}</small></article>)}</div><p className="instructor-note">Building the dream team? <a href="mailto:thekkc.net@gmail.com?subject=Femme%20Instructor%20Inquiry">Ask about teaching at Femme →</a></p></section>
 
       <section className="faq"><div className="container faq-grid"><div><p className="eyebrow red"><i /> You&apos;re wondering</p><h2>Let&apos;s make<br />this <em>easy.</em></h2><p className="faq-intro">Your only job is to show up. We&apos;ll take care of the rest.</p></div><div className="faq-list"><details open><summary>What do I wear?<span>+</span></summary><p>Wear something you can move in and feel good in. Fitted shorts or leggings and a tee are perfect for your first class. Heels are welcome for heels classes, but never required to start.</p></details><details><summary>Do I need any experience?<span>+</span></summary><p>Absolutely not. Beginner-friendly classes are built for your first spin, first strut, and every brave try in between.</p></details><details><summary>Is Femme for all body types?<span>+</span></summary><p>Yes. Full stop. Femme is designed as a judgment-free room for every body and every starting point.</p></details><details><summary>Where are you located?<span>+</span></summary><p>We&apos;re inside The Kreative Kollective Campus at 8438 Old Hickory Trail, Dallas, TX 75237.</p></details></div></div></section>
 

@@ -16,6 +16,8 @@
 .department-card.card-3:before{background:linear-gradient(0deg,rgba(0,0,0,.3),transparent 55%)}
 .department-card.card-2{background:linear-gradient(0deg,rgba(5,0,0,.9),rgba(70,0,8,.1)),url('/heels-choreography.png') center/cover no-repeat}
 .department-card.card-2:before{background:linear-gradient(0deg,rgba(0,0,0,.28),transparent 55%)}
-.instructor-grid.instructor-single{grid-template-columns:minmax(230px,280px)}
 .portrait.p-one{background:url('/professional-headshot.png') center 30%/cover no-repeat}
 .portrait.p-one:before,.portrait.p-one:after{display:none}
+
+/* Instructor placeholders: polished now, ready for real portraits and bios later. */
+.p-four{background:#32161d}.p-four:before{background:linear-gradient(135deg,#be6d5a,#1c263d);transform:translateX(-50%) rotate(5deg)}.p-four:after{background:#9d503e;box-shadow:0 -30px 0 -3px #160d12}.placeholder-badge{position:absolute;right:13px;bottom:13px;z-index:2;background:#f1d6b6;color:#451019;padding:7px 9px;font-size:8px;font-weight:700;letter-spacing:.12em}.placeholder-badge b{margin-left:4px}.instructor-placeholder .portrait{border:1px solid rgba(225,70,84,.35)}.instructor-grid article>p{margin-bottom:7px}.instructor-grid article>small{display:block;color:#e14958;font-size:9px;text-transform:uppercase;letter-spacing:.08em}.instructor-note{margin:38px 0 0;padding-top:20px;border-top:1px solid var(--line);font-size:12px;color:#bdbdbf}.instructor-note a{color:#ef5261;font-weight:700;margin-left:5px}
