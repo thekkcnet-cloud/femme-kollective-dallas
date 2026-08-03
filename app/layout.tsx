@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -10,6 +10,12 @@ export const metadata: Metadata = {
     images: [{ url: "/og.png", width: 1728, height: 919, alt: "Reclaim your confidence at Femme Kollective" }],
   },
   twitter: { card: "summary_large_image", title: "Femme Kollective | Reclaim Your Confidence", images: ["/og.png"] },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

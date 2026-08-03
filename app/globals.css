@@ -79,4 +79,70 @@ button.button,button.plan-link,.drop-in button{border:0;cursor:pointer;font:inhe
   .hero-orbit { display: none; }
   .hero-foot { margin-top: 54px; max-width: 360px; line-height: 1.6; }
   .hero-side-note, .scroll-cue { display: none; }
+
+  /* Shared medium-width rules keep every route usable when Wix gives the
+     iframe a desktop CSS viewport but the visible canvas is narrow. */
+  body { overflow-x: hidden; }
+  .section-heading, .pricing-top { display: block; }
+  .section-heading > p, .pricing-top > p { width: auto; max-width: 520px; margin-top: 22px; }
+  .testimonials, .departments, .instructors { padding-top: 78px; padding-bottom: 78px; }
+  .promise-grid { grid-template-columns: 1fr; gap: 10px; margin-top: 38px; }
+  .promise-grid article { min-height: 0; padding: 24px; }
+  .promise-grid h3 { margin: 25px 0 8px; }
+  .department-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 190px; gap: 10px; margin-top: 40px; }
+  .department-card, .card-1, .card-2, .card-3, .card-4, .card-5 { grid-column: span 1; grid-row: span 1; }
+  .card-1 { grid-column: span 2; }
+  .department-card { padding: 18px; }
+  .department-copy h3 { font-size: 23px; }
+  .department-copy p { font-size: 11px; }
+  .schedule-callout { align-items: flex-start; flex-wrap: wrap; }
+  .schedule-callout p { width: calc(100% - 54px); }
+  .schedule-callout a { margin-left: 54px; min-height: 44px; display: inline-flex; align-items: center; }
+  .pricing { padding: 78px 0 55px; }
+  .intro-offer { margin-top: 38px; padding: 35px 26px; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+  .intro-offer h3 { font-size: 34px; }
+  .offer-price { border-left: 0; border-top: 1px solid rgba(255,255,255,.3); padding: 16px 0 0; width: 100%; }
+  .offer-price b { font-size: 62px; }
+  .intro-offer .button, .party-copy .button { width: 100%; }
+  .plan-grid, .flex-passes { grid-template-columns: 1fr; }
+  .plan { min-height: 280px; }
+  .flex-passes .button { min-height: 58px; }
+  .parties { display: block; }
+  .party-visual { height: 370px; }
+  .party-copy { padding: 75px 24px; }
+  .instructor-grid, .instructor-grid.single { grid-template-columns: 1fr; margin-top: 38px; }
+  .portrait { height: 290px; }
+  .faq { padding: 78px 0; }
+  .faq-grid { display: block; }
+  .faq-list { margin-top: 45px; }
+  .footer-top { padding: 54px 0 35px; grid-template-columns: 1fr; gap: 30px; }
+  .footer-bottom { display: block; line-height: 1.7; }
+  .footer-bottom div { margin-top: 10px; }
+
+  .class-hero { min-height: 660px; background-position: 60% center; }
+  .class-hero-copy { padding-top: 105px; }
+  .class-hero-copy h1 { font-size: 66px; }
+  .class-number { font-size: 95px; top: 100px; }
+  .class-intro, .class-prep-grid, .class-book > .container { grid-template-columns: 1fr; gap: 35px; }
+  .class-intro { padding-top: 78px; padding-bottom: 65px; }
+  .class-details, .class-next-grid { grid-template-columns: 1fr; }
+  .class-details { padding-bottom: 75px; }
+  .class-details article { padding: 28px; }
+  .class-prep, .class-next { padding: 75px 0; }
+  .class-reassurance { grid-template-columns: 1fr 1fr; gap: 22px; }
+  .class-reassurance p { border: 0; }
+  .class-book { padding: 70px 0; }
+  .pole-tracks { padding: 75px 0; }
+  .pole-track-grid { grid-template-columns: 1fr; margin-top: 38px; }
+  .live-class-schedule { padding: 75px 0; }
+  .inquiry-hero { min-height: 470px; }
+  .inquiry-intro { padding-top: 75px; }
+  .inquiry-intro h1 { font-size: 58px; }
+  .inquiry-wrap { grid-template-columns: 1fr; gap: 54px; padding-top: 65px; }
+  .inquiry-wrap aside { position: static; }
+  .form-grid, .check-grid, .party-type-options { grid-template-columns: 1fr; }
+  .party-type-options label > span { min-height: auto; }
+  .payment-callout { grid-template-columns: 1fr 1fr; }
+  .payment-callout > p { max-width: none; }
+  .payment-callout .button { grid-column: 1 / -1; justify-self: start; }
 }
