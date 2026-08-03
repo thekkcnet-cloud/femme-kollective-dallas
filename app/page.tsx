@@ -1,9 +1,9 @@
 const departments = [
-  ["01", "Pole Fitness", "Build strength and embrace your power.", "Explore pole →"],
-  ["02", "Heels Choreography", "Walk in confidence. Own the room.", "Explore heels →"],
-  ["03", "Lap & Chair", "Seductive, fierce, unapologetic.", "Explore chair →"],
-  ["04", "Floorwork", "Flow, express, feel the power.", "Explore floorwork →"],
-  ["05", "Flex Appeal", "Lengthen and strengthen your dance body.", "Explore flexibility →"],
+  ["01", "Pole Fitness", "Build strength and embrace your power.", "Explore pole →", "pole-fitness"],
+  ["02", "Heels Choreography", "Walk in confidence. Own the room.", "Explore heels →", "heels-choreography"],
+  ["03", "Lap & Chair", "Seductive, fierce, unapologetic.", "Explore chair →", "lap-chair"],
+  ["04", "Floorwork", "Flow, express, feel the power.", "Explore floorwork →", "floorwork"],
+  ["05", "Flex Appeal", "Lengthen and strengthen your dance body.", "Explore flexibility →", "flex-appeal"],
 ];
 
 const scheduleUrl = "https://www.thekkc.net/schedule";
@@ -47,7 +47,7 @@ export default function Home() {
 
       <section className="departments container" id="classes">
         <div className="section-heading split"><div><p className="eyebrow red"><i /> Find your flow</p><h2>Your movement,<br /><em>your rules.</em></h2></div><p>Come exactly as you are. Leave with a little more of yourself.</p></div>
-        <div className="department-grid">{departments.map(([number, title, copy, link], index) => <article className={`department-card card-${index + 1}`} key={title}><span className="card-number">{number}</span><div className="card-overlay" /><div className="department-copy"><h3>{title}</h3><p>{copy}</p><a href="#membership">{link}</a></div><span className="card-spark">✦</span></article>)}</div>
+        <div className="department-grid">{departments.map(([number, title, copy, link, slug], index) => <a className={`department-card card-${index + 1}`} href={`/classes/${slug}`} key={title}><span className="card-number">{number}</span><div className="card-overlay" /><div className="department-copy"><h3>{title}</h3><p>{copy}</p><span className="class-card-link">{link}</span></div><span className="card-spark">✦</span></a>)}</div>
         <div className="schedule-callout"><span className="circle-arrow">↗</span><p>Not sure where to start? <strong>Find the class that fits your energy.</strong></p><a href="#membership">Choose your pass</a></div>
       </section>
 
