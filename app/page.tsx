@@ -40,6 +40,10 @@ export default function Home() {
         <nav className="nav container" aria-label="Main navigation">
           <a className="brand" href="#top"><span>FEMME</span> KOLLECTIVE</a>
           <div className="nav-links"><a href="#classes">Classes</a><a href="#membership">Membership</a><a href="#parties">Private parties</a></div>
+          <details className="mobile-menu">
+            <summary aria-label="Open navigation menu"><span className="menu-icon" aria-hidden="true"><i /><i /></span><span className="sr-only">Menu</span></summary>
+            <div className="mobile-menu-panel"><a href="#classes">Classes</a><a href="#membership">Membership</a><a href="#parties">Private parties</a><a href="#timetable">Schedule</a></div>
+          </details>
           <a className="nav-cta" href="#classes">View classes <span>↗</span></a>
         </nav>
         <div className="hero-glow" />

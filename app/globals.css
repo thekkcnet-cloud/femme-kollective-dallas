@@ -48,3 +48,35 @@ button.button,button.plan-link,.drop-in button{border:0;cursor:pointer;font:inhe
 
 /* Instructor portrait. */
 .p-four{background:#32161d}.p-four:before{background:linear-gradient(135deg,#be6d5a,#1c263d);transform:translateX(-50%) rotate(5deg)}.p-four:after{background:#9d503e;box-shadow:0 -30px 0 -3px #160d12}.placeholder-badge{position:absolute;right:13px;bottom:13px;z-index:2;background:#f1d6b6;color:#451019;padding:7px 9px;font-size:8px;font-weight:700;letter-spacing:.12em}.placeholder-badge b{margin-left:4px}.instructor-placeholder .portrait{border:1px solid rgba(225,70,84,.35)}.instructor-grid article>p{margin-bottom:7px}.instructor-grid article>small{display:block;color:#e14958;font-size:9px;text-transform:uppercase;letter-spacing:.08em}.instructor-note{margin:38px 0 0;padding-top:20px;border-top:1px solid var(--line);font-size:12px;color:#bdbdbf}.instructor-note a{color:#ef5261;font-weight:700;margin-left:5px}
+.mobile-menu{display:none;position:relative;margin-left:auto;margin-right:12px}.mobile-menu summary{display:grid;place-items:center;width:44px;height:44px;cursor:pointer;list-style:none;border:1px solid rgba(255,255,255,.28)}.mobile-menu summary::-webkit-details-marker{display:none}.menu-icon{display:grid;gap:5px}.menu-icon i{display:block;width:17px;height:1px;background:#fff}.mobile-menu-panel{position:absolute;right:0;top:52px;display:grid;min-width:190px;padding:8px;background:#111112;border:1px solid #4a2026;box-shadow:0 16px 35px rgba(0,0,0,.45)}.mobile-menu-panel a{padding:14px 13px;font-size:12px;border-bottom:1px solid #2c2224}.mobile-menu-panel a:last-child{border-bottom:0}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+@media(max-width:720px){
+  .container{width:min(100% - 32px,1180px)}.nav{height:70px}.mobile-menu{display:block}.nav-cta{min-height:44px;display:inline-flex;align-items:center}.hero{min-height:650px;background-position:61% center}.hero-content{padding-top:82px}.hero-content h1{font-size:clamp(52px,16vw,62px);margin-bottom:22px}.hero-copy{font-size:15px;line-height:1.55}.hero-actions{display:grid;gap:10px;margin-top:26px}.hero-actions .button{width:100%}.hero-foot{margin-top:54px;max-width:290px;line-height:1.6}.scroll-cue{display:none}
+  .testimonials,.departments,.instructors{padding:64px 0}.section-heading h2,.pricing h2,.party-copy h2,.faq h2{font-size:clamp(38px,12vw,52px)}.section-heading>p,.pricing-top>p{font-size:13px;line-height:1.55;margin-top:18px}.promise-grid{gap:10px}.promise-grid article{padding:24px;min-height:0}.promise-grid h3{margin:25px 0 8px}.department-grid{grid-template-columns:1fr 1fr;grid-auto-rows:178px;gap:10px;margin-top:34px}.department-card{padding:18px}.department-copy h3{font-size:20px}.department-copy p{font-size:11px;margin-bottom:10px}.schedule-callout{gap:12px;padding:24px 0}.schedule-callout a{margin-left:48px;min-height:44px;display:inline-flex;align-items:center}
+  .pricing{padding:64px 0 48px}.intro-offer{margin-top:30px;padding:30px 22px;gap:16px}.intro-offer h3{font-size:30px}.intro-offer .button{width:100%}.plan{padding:26px;min-height:0}.plan-link{min-height:44px;align-items:center}.flex-passes{gap:10px}.flex-passes article{padding:20px}.flex-passes .button{width:100%}.payment-callout{margin-top:34px;padding:24px 20px}.parties{display:block}.party-visual{height:300px}.party-copy{padding:62px 16px}.party-copy .button{width:100%}.instructor-grid.single{grid-template-columns:1fr}.portrait{height:290px}.faq{padding:64px 0}.faq-list{margin-top:34px}.faq-list details{padding:18px 0}.faq-list summary{font-size:19px;min-height:44px;align-items:center}.footer-top{padding:48px 0 30px;gap:26px}.footer-bottom{font-size:9px}
+  .homepage-timetable{padding:64px 0}.timetable-shell{margin-top:30px}.timetable-toolbar{display:flex;justify-content:space-between;gap:10px;padding:12px 14px}.timetable-toolbar a{font-size:10px}.weekly-timetable{display:block;overflow:visible}.timetable-day{min-width:0;border-right:0;border-bottom:1px solid #2d292b}.timetable-day:last-child{border-bottom:0}.timetable-day header{height:auto;min-height:58px;padding:10px 14px;flex-direction:row;align-items:center;gap:8px}.timetable-day header small{font-size:8px}.timetable-day header strong{font-size:15px;margin-top:0}.timetable-day-body{min-height:0;padding:9px 10px 12px;grid-template-columns:1fr;gap:8px}.timetable-event{padding:12px;min-height:106px}.timetable-event h3{font-size:12px}.timetable-event span{font-size:10px;margin-top:11px}.timetable-empty{min-height:0;padding:8px 0;justify-content:start;font-size:12px}.timetable-note{font-size:10px;margin-top:10px}
+}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.button,.department-card,.timetable-event{transition:none}}
+
+/* Keep mobile overrides after the photo-specific background declarations. */
+@media(max-width:720px){.hero{background-position:61% center}.hero:after{background:linear-gradient(90deg,rgba(0,0,0,.95) 0%,rgba(0,0,0,.74) 58%,rgba(0,0,0,.25) 100%),linear-gradient(0deg,#050505,transparent 34%)}}
+
+/* Wix can render this embedded page inside a desktop-sized frame while the
+   visible canvas is narrow. Keep the mobile composition available there too. */
+@media (max-width: 1280px) {
+  .container { width: min(calc(100% - 32px), 1180px); }
+  .nav { height: 70px; }
+  .nav-links { display: none; }
+  .mobile-menu { display: block; }
+  .nav-cta { min-height: 44px; display: inline-flex; align-items: center; }
+  .hero { min-height: 650px; background-position: 61% center; }
+  .hero-content { padding-top: 82px; }
+  .hero-content h1 { font-size: clamp(52px, 10vw, 90px); margin-bottom: 22px; }
+  .hero-copy { font-size: 15px; line-height: 1.55; max-width: 460px; }
+  .hero-actions { display: grid; gap: 10px; max-width: 360px; margin-top: 26px; }
+  .hero-actions .button { width: 100%; }
+  .hero-glow { width: 350px; height: 350px; right: -130px; top: 230px; }
+  .hero-orbit { display: none; }
+  .hero-foot { margin-top: 54px; max-width: 360px; line-height: 1.6; }
+  .hero-side-note, .scroll-cue { display: none; }
+}
