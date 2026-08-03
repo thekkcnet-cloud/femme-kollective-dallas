@@ -34,7 +34,7 @@ const classes = {
     perfect: "You want to feel more confident, expressive, and grounded in how you carry yourself on and off the dance floor.",
     schedule: [
       { name: "Intro to Heels", day: "Tuesday", time: "8:00 PM", duration: "60 min" },
-      { name: "Beginner Heels", day: "Select Fridays", time: "8:00 PM", duration: "60 min" },
+      { name: "Beginner Heels", day: "Friday", time: "8:00 PM", duration: "60 min · Select dates" },
     ],
   },
   "lap-chair": {
