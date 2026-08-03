@@ -63,7 +63,7 @@ button.button,button.plan-link,.drop-in button{border:0;cursor:pointer;font:inhe
 
 /* Wix can render this embedded page inside a desktop-sized frame while the
    visible canvas is narrow. Keep the mobile composition available there too. */
-@media (max-width: 1280px) {
+@media (min-width: 721px) and (max-width: 1280px) {
   .container { width: min(calc(100% - 32px), 1180px); }
   .nav { height: 70px; }
   .nav-links { display: none; }
