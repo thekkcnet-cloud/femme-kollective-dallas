@@ -11,6 +11,11 @@ const classes = {
     flow: ["Mobility-focused warm-up", "Strength and grip preparation", "Step-by-step skill instruction", "A short combination or guided practice", "Cool-down and celebration"],
     wear: "Fitted shorts and a comfortable top are best because skin contact helps you grip the pole. Come without lotion or body oil. Bare feet are perfect for beginner classes.",
     perfect: "You want a fun strength practice, you’re curious about pole, or you’re ready to feel capable in a completely new way.",
+    tracks: [
+      { name: "Absolute Beginner Pole", level: "Your first pole class", description: "Learn studio safety, basic grips, pole walks, foundational spins, simple poses, and the strength patterns that make every future skill feel more possible.", times: ["Monday · 6:00 PM · 60 min", "Saturday · 10:00 AM · 45 min"] },
+      { name: "Advanced Beginner Pole", level: "Build on your foundation", description: "Progress your spins, climbs, holds, transitions, and combinations with more control. Best after you feel comfortable with the Absolute Beginner foundations.", times: ["Monday · 7:00 PM · 60 min", "Saturday · 11:00 AM · 60 min"] },
+      { name: "Pole Dance Choreography", level: "Connect skills to music", description: "Turn beginner pole vocabulary into a complete dance experience using transitions, musicality, floor-to-pole movement, and expressive choreography.", times: ["Monday · 8:00 PM · 60 min", "Saturday · 12:00 PM · 60 min"] },
+    ],
   },
   "heels-choreography": {
     number: "02", name: "Heels Choreography", eyebrow: "Confidence you can feel", image: "/heels-choreography.png",
@@ -65,6 +70,7 @@ export default async function ClassPage({ params }: { params: Promise<{ slug: st
     </section>
     <section className="class-intro container" id="expect"><div><p className="eyebrow red"><i /> The experience</p><h2>Come curious.<br /><em>Leave connected.</em></h2></div><p>{item.intro}</p></section>
     <section className="class-details container"><article><span>01</span><h3>What you&apos;ll learn</h3><ul>{item.learn.map(point => <li key={point}>{point}</li>)}</ul></article><article><span>02</span><h3>How class flows</h3><ol>{item.flow.map(point => <li key={point}>{point}</li>)}</ol></article></section>
+    {"tracks" in item && <section className="pole-tracks"><div className="container"><div className="section-heading split"><div><p className="eyebrow red"><i /> Choose your pole path</p><h2>Start at your level.<br /><em>Grow from there.</em></h2></div><p>The weekly progression is modeled after the Krysco class rhythm. Times may change, so confirm your spot on the live Wix schedule.</p></div><div className="pole-track-grid">{item.tracks.map((track, index) => <article key={track.name}><span>0{index + 1}</span><small>{track.level}</small><h3>{track.name}</h3><p>{track.description}</p><div>{track.times.map(time => <time key={time}>{time}</time>)}</div><a href={scheduleUrl} target="_top">View live availability →</a></article>)}</div></div></section>}
     <section className="class-prep"><div className="container class-prep-grid"><article><p className="eyebrow red"><i /> What to wear</p><h2>Dress to <em>move.</em></h2><p>{item.wear}</p></article><article><p className="eyebrow red"><i /> This is for you if</p><h2>Start where<br /><em>you are.</em></h2><p>{item.perfect}</p></article></div></section>
     <section className="class-reassurance container"><p>No experience required</p><p>Every body welcome</p><p>Beginner-friendly options</p><p>Judgment-free room</p></section>
     <section className="class-next"><div className="container"><p className="eyebrow red"><i /> Keep exploring</p><h2>Find another <em>flow.</em></h2><div className="class-next-grid">{otherClasses.map(([key, other]) => <a href={`/classes/${key}`} key={key}><small>{other.number}</small><span>{other.name}</span><b>→</b></a>)}</div></div></section>
