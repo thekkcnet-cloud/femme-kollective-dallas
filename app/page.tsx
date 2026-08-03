@@ -7,11 +7,26 @@ const departments = [
 ];
 
 const scheduleUrl = "https://www.thekkc.net/schedule";
+const checkoutBase = "https://www.thekkc.net/pricing-plans/plan-customization";
+const firstTimerCheckout = `${checkoutBase}?planId=95589e75-4097-4581-bd41-b97a4bb1dff3&pricingVariantId=16e5871b-5040-445d-a5c9-37207e6155bf`;
+const weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+const weeklyClasses = [
+  { day: "Monday", time: "12:00 PM", name: "Absolute Beginner Pole", duration: "50 min", style: "pole" },
+  { day: "Monday", time: "6:00 PM", name: "Absolute Beginner Pole", duration: "50 min", style: "pole" },
+  { day: "Monday", time: "8:00 PM", name: "Pole Dance Choreography", duration: "60 min", style: "pole" },
+  { day: "Tuesday", time: "7:00 PM", name: "Lap/Chair Dance", duration: "60 min", style: "chair" },
+  { day: "Tuesday", time: "8:00 PM", name: "Intro to Heels", duration: "60 min", style: "heels" },
+  { day: "Wednesday", time: "7:00 PM", name: "Floorwork", duration: "60 min", style: "floor" },
+  { day: "Wednesday", time: "7:00 PM", name: "Flex Appeal", duration: "60 min", style: "flex" },
+  { day: "Friday", time: "8:00 PM", name: "Beginner Heels", duration: "60 min · Select dates", style: "heels" },
+  { day: "Saturday", time: "10:00 AM", name: "Absolute Beginner Pole", duration: "50 min", style: "pole" },
+  { day: "Saturday", time: "12:00 PM", name: "Pole Dance Choreography", duration: "60 min", style: "pole" },
+];
 
 const plans = [
-  { name: "Starter", buttonLabel: "Choose Starter", price: "$79", cadence: "/mo", detail: "4 classes / month", perks: ["Access to eligible Femme classes", "Monthly milestone recognition", "Birthday recognition"] },
-  { name: "Enthusiast", buttonLabel: "Choose Enthusiast", price: "$119", cadence: "/mo", detail: "8 classes / month", perks: ["Priority booking", "10% off workshops + merch", "Guest pass every 3 months"] },
-  { name: "Unlimited VIP", buttonLabel: "Choose Unlimited VIP", price: "$149", cadence: "/mo", detail: "Unlimited classes", perks: ["Priority booking", "15% off workshops, merch + rentals", "Member-only events + masterclasses"], vip: true },
+  { name: "Starter", buttonLabel: "Choose Starter", price: "$79", cadence: "/mo", detail: "4 classes / month", perks: ["Access to eligible Femme classes", "Monthly milestone recognition", "Birthday recognition"], checkout: `${checkoutBase}?planId=00882a68-7ca2-4cce-99d3-2fc61c53dd05&pricingVariantId=f70ac0f7-6632-4a74-b6fb-0783bb48362b` },
+  { name: "Enthusiast", buttonLabel: "Choose Enthusiast", price: "$119", cadence: "/mo", detail: "8 classes / month", perks: ["Priority booking", "10% off workshops + merch", "Guest pass every 3 months"], checkout: `${checkoutBase}?planId=3cbb67cc-c50e-42dc-9dfd-9deb693f812a&pricingVariantId=c769a879-d33a-4769-9b6b-aba11ebd5003` },
+  { name: "Unlimited VIP", buttonLabel: "Choose Unlimited VIP", price: "$149", cadence: "/mo", detail: "Unlimited classes", perks: ["Priority booking", "15% off workshops, merch + rentals", "Member-only events + masterclasses"], checkout: `${checkoutBase}?planId=09435e6b-6126-47a4-abcb-389e99b1ec21&pricingVariantId=42ee0218-673f-4acf-a661-248a7f14bde3`, vip: true },
 ];
 
 const instructors = [
@@ -33,12 +48,14 @@ export default function Home() {
           <p className="eyebrow"><i /> A women-centered movement studio · Dallas</p>
           <h1>Reclaim your<br /><em>confidence.</em></h1>
           <p className="hero-copy">You don&apos;t need experience. You don&apos;t need to be flexible. You just need to show up. Reconnect with your flow through pole, heels, floorwork, and more.</p>
-          <div className="hero-actions"><a className="button button-primary" href="#membership">Claim 3 classes for $39 <span>→</span></a><a className="button button-ghost" href="#classes">View class schedule</a></div>
+          <div className="hero-actions"><a className="button button-primary" href={firstTimerCheckout} target="_top">Claim 3 classes for $39 <span>→</span></a><a className="button button-ghost" href="#timetable">View class schedule</a></div>
           <div className="hero-foot"><p><strong>No experience required</strong> · Every body welcome · Judgment-free</p></div>
         </div>
         <div className="hero-side-note">move like you mean it <span>✦</span></div>
         <div className="scroll-cue">Scroll to discover <span>↓</span></div>
       </section>
+
+      <section className="homepage-timetable" id="timetable"><div className="container"><div className="section-heading split"><div><p className="eyebrow red"><i /> Weekly timetable</p><h2>Find your time.<br /><em>Book your flow.</em></h2></div><p>Browse the weekly Femme lineup, then choose your date and reserve through the live Wix calendar.</p></div><div className="timetable-shell"><div className="timetable-toolbar"><div><span className="live-dot" /> Wix Bookings</div><small>America/Chicago · Weekly view</small><a href={scheduleUrl} target="_top">Open full calendar ↗</a></div><div className="weekly-timetable" role="region" aria-label="Femme Kollective weekly class timetable" tabIndex={0}>{weekDays.map(day => { const sessions = weeklyClasses.filter(session => session.day === day); return <div className="timetable-day" key={day}><header><small>{day.slice(0,3)}</small><strong>{day}</strong></header><div className="timetable-day-body">{sessions.length ? sessions.map(session => <a className={`timetable-event event-${session.style}`} href={scheduleUrl} target="_top" key={`${session.name}-${session.time}`}><time>{session.time}</time><h3>{session.name}</h3><p>{session.duration}</p><span>Book Now →</span></a>) : <span className="timetable-empty">—</span>}</div></div>})}</div></div><p className="timetable-note">Wix displays the final dates, availability, and remaining spaces.</p></div></section>
 
       <section className="testimonials" aria-label="The Femme Kollective promise">
         <div className="container"><p className="eyebrow red"><i /> The Femme feeling</p><div className="section-heading"><h2>You&apos;re not just joining<br />a studio. You&apos;re joining <em>the Kollective.</em></h2><p>Confidence brings you through the door. Sisterhood is why you stay.</p></div>
@@ -52,9 +69,9 @@ export default function Home() {
       </section>
 
       <section className="pricing" id="membership"><div className="container"><div className="pricing-top"><div><p className="eyebrow red"><i /> Come as you are</p><h2>Start your<br /><em>Femme era.</em></h2></div><p>Choose the rhythm that feels right. No contracts. Just your next move.</p></div>
-        <div className="intro-offer"><div className="best-ribbon">NEW STUDENTS</div><div><p className="eyebrow">Your first step</p><h3>Femme First Timer<br />Special</h3><p className="offer-copy">Three classes. Fourteen days.<br />Explore every side of Femme.</p></div><div className="offer-price"><small>One-time</small><b>$39</b><small>Valid for 14 days</small></div><a className="button button-light" href={scheduleUrl} target="_top">Book Now <span>→</span></a></div>
-        <div className="plan-grid">{plans.map((plan) => <article className={`plan ${plan.vip ? "vip" : ""}`} key={plan.name}>{plan.vip && <div className="vip-label">✦ MOST FEMME</div>}<p className="plan-name">{plan.name}</p><p className="plan-price">{plan.price}<small>{plan.cadence}</small></p><p className="plan-detail">{plan.detail}</p><ul>{plan.perks.map((perk) => <li key={perk}><span>✓</span>{perk}</li>)}</ul><a href={scheduleUrl} target="_top" className="plan-link">{plan.buttonLabel} <span>→</span></a></article>)}</div>
-        <div className="flex-passes"><article><small>CASUAL PASS</small><h3>Drop-In</h3><strong>$30</strong><p>One eligible Femme class.</p></article><article><small>CLASS PACK</small><h3>3-Class Pack</h3><strong>$49</strong><p>Flexible visits without a membership.</p></article><article><small>CLASS PACK</small><h3>6-Class Pack</h3><strong>$89</strong><p>More movement, more value.</p></article><a href={scheduleUrl} target="_top" className="button button-primary">View booking options <span>→</span></a></div>
+        <div className="intro-offer"><div className="best-ribbon">NEW STUDENTS</div><div><p className="eyebrow">Your first step</p><h3>Femme First Timer<br />Special</h3><p className="offer-copy">Three classes. Fourteen days.<br />Explore every side of Femme.</p></div><div className="offer-price"><small>One-time</small><b>$39</b><small>Valid for 14 days</small></div><a className="button button-light" href={firstTimerCheckout} target="_top">Proceed to Checkout <span>→</span></a></div>
+        <div className="plan-grid">{plans.map((plan) => <article className={`plan ${plan.vip ? "vip" : ""}`} key={plan.name}>{plan.vip && <div className="vip-label">✦ MOST FEMME</div>}<p className="plan-name">{plan.name}</p><p className="plan-price">{plan.price}<small>{plan.cadence}</small></p><p className="plan-detail">{plan.detail}</p><ul>{plan.perks.map((perk) => <li key={perk}><span>✓</span>{perk}</li>)}</ul><a href={plan.checkout} target="_top" className="plan-link">{plan.buttonLabel} <span>→</span></a></article>)}</div>
+        <div className="flex-passes"><article><small>CASUAL PASS</small><h3>Drop-In</h3><strong>$30</strong><p>Choose a class and pay during booking.</p></article><article><small>CLASS PACK</small><h3>3-Class Pack</h3><strong>$49</strong><p>Flexible visits without a membership.</p></article><article><small>CLASS PACK</small><h3>6-Class Pack</h3><strong>$89</strong><p>More movement, more value.</p></article><a href="#timetable" className="button button-primary">View weekly timetable <span>→</span></a></div>
         <p className="pricing-schedule">Already have a pass? <a href={scheduleUrl} target="_top">Book from the live Wix calendar →</a></p>
       </div></section>
 
