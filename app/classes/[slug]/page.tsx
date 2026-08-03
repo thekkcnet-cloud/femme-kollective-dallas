@@ -11,9 +11,15 @@ const classes = {
     flow: ["Mobility-focused warm-up", "Strength and grip preparation", "Step-by-step skill instruction", "A short combination or guided practice", "Cool-down and celebration"],
     wear: "Fitted shorts and a comfortable top are best because skin contact helps you grip the pole. Come without lotion or body oil. Bare feet are perfect for beginner classes.",
     perfect: "You want a fun strength practice, you’re curious about pole, or you’re ready to feel capable in a completely new way.",
+    schedule: [
+      { name: "Absolute Beginner Pole", day: "Monday", time: "12:00 PM", duration: "50 min" },
+      { name: "Absolute Beginner Pole", day: "Monday", time: "6:00 PM", duration: "50 min" },
+      { name: "Pole Dance Choreography", day: "Monday", time: "8:00 PM", duration: "60 min" },
+      { name: "Absolute Beginner Pole", day: "Saturday", time: "10:00 AM", duration: "50 min" },
+      { name: "Pole Dance Choreography", day: "Saturday", time: "12:00 PM", duration: "60 min" },
+    ],
     tracks: [
-      { name: "Absolute Beginner Pole", level: "Your first pole class", description: "Learn studio safety, basic grips, pole walks, foundational spins, simple poses, and the strength patterns that make every future skill feel more possible.", times: ["Monday · 6:00 PM · 60 min", "Saturday · 10:00 AM · 45 min"] },
-      { name: "Advanced Beginner Pole", level: "Build on your foundation", description: "Progress your spins, climbs, holds, transitions, and combinations with more control. Best after you feel comfortable with the Absolute Beginner foundations.", times: ["Monday · 7:00 PM · 60 min", "Saturday · 11:00 AM · 60 min"] },
+      { name: "Absolute Beginner Pole", level: "Your first pole class", description: "Learn studio safety, basic grips, pole walks, foundational spins, simple poses, and the strength patterns that make every future skill feel more possible.", times: ["Monday · 12:00 PM · 50 min", "Monday · 6:00 PM · 50 min", "Saturday · 10:00 AM · 50 min"] },
       { name: "Pole Dance Choreography", level: "Connect skills to music", description: "Turn beginner pole vocabulary into a complete dance experience using transitions, musicality, floor-to-pole movement, and expressive choreography.", times: ["Monday · 8:00 PM · 60 min", "Saturday · 12:00 PM · 60 min"] },
     ],
   },
@@ -25,6 +31,10 @@ const classes = {
     flow: ["Warm-up and ankle preparation", "Walk, posture, and technique drills", "Choreography taught in small sections", "Guided performance rounds", "Stretch and cool-down"],
     wear: "Wear fitted clothing you can move in. Knee pads are strongly recommended. Dance heels are optional unless the class listing says otherwise—socks or clean sneakers work too.",
     perfect: "You want to feel more confident, expressive, and grounded in how you carry yourself on and off the dance floor.",
+    schedule: [
+      { name: "Intro to Heels", day: "Tuesday", time: "8:00 PM", duration: "60 min" },
+      { name: "Beginner Heels", day: "Select Fridays", time: "8:00 PM", duration: "60 min" },
+    ],
   },
   "lap-chair": {
     number: "03", name: "Lap & Chair", eyebrow: "Fierce, playful, unapologetic", image: "/lap-chair.png",
@@ -34,6 +44,7 @@ const classes = {
     flow: ["Body-awareness warm-up", "Chair safety and foundation drills", "Movement vocabulary and transitions", "A short expressive routine", "Photo-ready poses and cool-down"],
     wear: "Choose fitted dancewear, leggings, or shorts that make you feel good. Knee pads are helpful. Heels are optional; socks or bare feet are welcome.",
     perfect: "You want to explore sensuality, playfulness, and performance in a private-feeling, judgment-free environment.",
+    schedule: [{ name: "Lap/Chair Dance", day: "Tuesday", time: "7:00 PM", duration: "60 min" }],
   },
   floorwork: {
     number: "04", name: "Floorwork", eyebrow: "Flow from the ground up", image: "/floorwork.png",
@@ -43,6 +54,7 @@ const classes = {
     flow: ["Joint-friendly mobility warm-up", "Foundational floor pathways", "Technique drills on both sides", "A short choreographed sequence", "Stretch and recovery"],
     wear: "Leggings or covered knees, socks, and comfortable fitted layers work best. Knee pads are encouraged, especially while you learn new pathways.",
     perfect: "You love expressive movement, want smoother transitions, or want to feel more connected to your body and the music.",
+    schedule: [{ name: "Floorwork", day: "Wednesday", time: "7:00 PM", duration: "60 min" }],
   },
   "flex-appeal": {
     number: "05", name: "Flex Appeal", eyebrow: "Mobility with intention", image: "/flex-appeal.png",
@@ -52,6 +64,7 @@ const classes = {
     flow: ["Gentle full-body warm-up", "Mobility and activation drills", "Focused flexibility sequences", "Supported progressions for your level", "Restorative cool-down"],
     wear: "Wear stretchy, comfortable layers and bring socks. A yoga mat is helpful when noted on the schedule. No heels or dance experience are needed.",
     perfect: "You want more mobility for dance or daily life, need a recovery-focused class, or think you’re ‘not flexible enough.’",
+    schedule: [{ name: "Flex Appeal", day: "Wednesday", time: "7:00 PM", duration: "60 min" }],
   },
 } as const;
 
@@ -70,7 +83,8 @@ export default async function ClassPage({ params }: { params: Promise<{ slug: st
     </section>
     <section className="class-intro container" id="expect"><div><p className="eyebrow red"><i /> The experience</p><h2>Come curious.<br /><em>Leave connected.</em></h2></div><p>{item.intro}</p></section>
     <section className="class-details container"><article><span>01</span><h3>What you&apos;ll learn</h3><ul>{item.learn.map(point => <li key={point}>{point}</li>)}</ul></article><article><span>02</span><h3>How class flows</h3><ol>{item.flow.map(point => <li key={point}>{point}</li>)}</ol></article></section>
-    {"tracks" in item && <section className="pole-tracks"><div className="container"><div className="section-heading split"><div><p className="eyebrow red"><i /> Choose your pole path</p><h2>Start at your level.<br /><em>Grow from there.</em></h2></div><p>The weekly progression is modeled after the Krysco class rhythm. Times may change, so confirm your spot on the live Wix schedule.</p></div><div className="pole-track-grid">{item.tracks.map((track, index) => <article key={track.name}><span>0{index + 1}</span><small>{track.level}</small><h3>{track.name}</h3><p>{track.description}</p><div>{track.times.map(time => <time key={time}>{time}</time>)}</div><a href={scheduleUrl} target="_top">View live availability →</a></article>)}</div></div></section>}
+    {"tracks" in item && <section className="pole-tracks"><div className="container"><div className="section-heading split"><div><p className="eyebrow red"><i /> Choose your pole path</p><h2>Start at your level.<br /><em>Grow from there.</em></h2></div><p>These active pole offerings and times are synced from the Femme Kollective Wix booking calendar.</p></div><div className="pole-track-grid">{item.tracks.map((track, index) => <article key={track.name}><span>0{index + 1}</span><small>{track.level}</small><h3>{track.name}</h3><p>{track.description}</p><div>{track.times.map(time => <time key={time}>{time}</time>)}</div><a href={scheduleUrl} target="_top">View live availability →</a></article>)}</div></div></section>}
+    <section className="live-class-schedule"><div className="container"><div className="section-heading split"><div><p className="eyebrow red"><i /> Live Wix schedule</p><h2>Choose your<br /><em>next class.</em></h2></div><p>Current recurring times from the Femme Kollective booking calendar. Wix always shows the final date, availability, and booking status.</p></div><div className="live-schedule-grid">{item.schedule.map((session, index) => <article key={`${session.name}-${session.day}-${session.time}`}><span>{String(index + 1).padStart(2, "0")}</span><div><small>{session.day}</small><h3>{session.name}</h3></div><div className="live-schedule-time"><strong>{session.time}</strong><small>{session.duration}</small></div><a href={scheduleUrl} target="_top" aria-label={`Book ${session.name} on Wix`}>Book Now →</a></article>)}</div></div></section>
     <section className="class-prep"><div className="container class-prep-grid"><article><p className="eyebrow red"><i /> What to wear</p><h2>Dress to <em>move.</em></h2><p>{item.wear}</p></article><article><p className="eyebrow red"><i /> This is for you if</p><h2>Start where<br /><em>you are.</em></h2><p>{item.perfect}</p></article></div></section>
     <section className="class-reassurance container"><p>No experience required</p><p>Every body welcome</p><p>Beginner-friendly options</p><p>Judgment-free room</p></section>
     <section className="class-next"><div className="container"><p className="eyebrow red"><i /> Keep exploring</p><h2>Find another <em>flow.</em></h2><div className="class-next-grid">{otherClasses.map(([key, other]) => <a href={`/classes/${key}`} key={key}><small>{other.number}</small><span>{other.name}</span><b>→</b></a>)}</div></div></section>
