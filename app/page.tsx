@@ -86,7 +86,7 @@ export default function Home() {
           <p className="eyebrow"><i /> A women-centered movement studio · Dallas</p>
           <h1>Reclaim your<br /><em>confidence.</em></h1>
           <p className="hero-copy">You don&apos;t need experience. You don&apos;t need to be flexible. You just need to show up. Reconnect with your flow through pole, heels, floorwork, and more.</p>
-          <div className="hero-actions"><a className="button button-primary" href={firstTimerCheckout} target="_top">Claim 3 classes for $39 <span>→</span></a><a className="button button-ghost" href="#timetable">View class schedule</a></div>
+          <div className="hero-actions"><a className="button button-primary" href={firstTimerCheckout} target="_top">Claim 3 classes for $39 <span>→</span></a><a className="button button-ghost" href="#classes">View classes</a></div>
           <div className="hero-foot"><p><strong>No experience required</strong> · Every body welcome · Judgment-free</p></div>
         </div>
         <div className="hero-side-note">move like you mean it <span>✦</span></div>
