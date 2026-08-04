@@ -61,6 +61,10 @@ button.button,button.plan-link,.drop-in button{border:0;cursor:pointer;font:inhe
 /* Keep mobile overrides after the photo-specific background declarations. */
 @media(max-width:720px){.hero{background-position:61% center}.hero:after{background:linear-gradient(90deg,rgba(0,0,0,.95) 0%,rgba(0,0,0,.74) 58%,rgba(0,0,0,.25) 100%),linear-gradient(0deg,#050505,transparent 34%)}}
 
+/* The mobile hero uses a clean branded field instead of cropping the desktop
+   poster artwork. This keeps the copy and CTAs readable at 320–430px. */
+@media(max-width:720px){.hero{background-image:radial-gradient(circle at 82% 30%,#421018 0,#13080a 28%,#050505 72%);background-position:center;background-size:cover}}
+
 /* Wix can render this embedded page inside a desktop-sized frame while the
    visible canvas is narrow. Keep the mobile composition available there too. */
 @media (min-width: 721px) and (max-width: 1280px) {
