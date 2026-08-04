@@ -12,7 +12,7 @@ const departments = [
 
 // All class reservations stay on the Wix booking form. The top-level target
 // keeps the booking flow from being trapped inside the custom-element iframe.
-const bookingUrl = "https://www.thekkc.net/schedule";
+const bookingUrl = "https://www.thekkc.net/booking-form?referral=weekly_timetable_widget";
 const scheduleUrl = bookingUrl;
 const checkoutBase = "https://www.thekkc.net/pricing-plans/plan-customization";
 const firstTimerCheckout = `${checkoutBase}?planId=95589e75-4097-4581-bd41-b97a4bb1dff3&pricingVariantId=16e5871b-5040-445d-a5c9-37207e6155bf`;
