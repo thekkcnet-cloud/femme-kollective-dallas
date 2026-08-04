@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const departments = [
   ["01", "Pole Fitness", "Build strength and embrace your power.", "Explore pole →", "pole-fitness"],
@@ -67,6 +67,16 @@ export default function Home() {
   const selected = week.find((date) => dateKey(date) === selectedDate) ?? week[0];
   const selectedDay = weekDays[selected.getDay() === 0 ? 6 : selected.getDay() - 1];
   const selectedClasses = weeklyClasses.filter((session) => session.day === selectedDay);
+
+  useEffect(() => {
+    if (window.parent === window) return;
+    const sendHeight = () => window.parent.postMessage({ type: "KKC_FEMME_HEIGHT", height: document.documentElement.scrollHeight }, "*");
+    sendHeight();
+    const observer = new ResizeObserver(sendHeight);
+    observer.observe(document.documentElement);
+    window.addEventListener("resize", sendHeight);
+    return () => { observer.disconnect(); window.removeEventListener("resize", sendHeight); };
+  }, []);
 
   return (
     <main>
