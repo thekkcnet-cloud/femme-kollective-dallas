@@ -1,3 +1,7 @@
+'use client';
+
+import { useMemo, useState } from "react";
+
 const departments = [
   ["01", "Pole Fitness", "Build strength and embrace your power.", "Explore pole →", "pole-fitness"],
   ["02", "Heels Choreography", "Walk in confidence. Own the room.", "Explore heels →", "heels-choreography"],
@@ -23,6 +27,23 @@ const weeklyClasses = [
   { day: "Saturday", time: "12:00 PM", name: "Pole Dance Choreography", duration: "60 min", style: "pole" },
 ];
 
+function getMonday(date: Date) {
+  const result = new Date(date);
+  const day = result.getDay();
+  const diff = day === 0 ? -6 : 1 - day;
+  result.setDate(result.getDate() + diff);
+  result.setHours(12, 0, 0, 0);
+  return result;
+}
+
+function formatDate(date: Date) {
+  return new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric" }).format(date);
+}
+
+function dateKey(date: Date) {
+  return date.toISOString().slice(0, 10);
+}
+
 const plans = [
   { name: "Starter", buttonLabel: "Choose Starter", price: "$79", cadence: "/mo", detail: "4 classes / month", perks: ["Access to eligible Femme classes", "Monthly milestone recognition", "Birthday recognition"], checkout: `${checkoutBase}?planId=00882a68-7ca2-4cce-99d3-2fc61c53dd05&pricingVariantId=f70ac0f7-6632-4a74-b6fb-0783bb48362b` },
   { name: "Enthusiast", buttonLabel: "Choose Enthusiast", price: "$119", cadence: "/mo", detail: "8 classes / month", perks: ["Priority booking", "10% off workshops + merch", "Guest pass every 3 months"], checkout: `${checkoutBase}?planId=3cbb67cc-c50e-42dc-9dfd-9deb693f812a&pricingVariantId=c769a879-d33a-4769-9b6b-aba11ebd5003` },
@@ -34,6 +55,19 @@ const instructors = [
 ];
 
 export default function Home() {
+  const week = useMemo(() => {
+    const monday = getMonday(new Date());
+    return Array.from({ length: 7 }, (_, index) => {
+      const date = new Date(monday);
+      date.setDate(monday.getDate() + index);
+      return date;
+    });
+  }, []);
+  const [selectedDate, setSelectedDate] = useState(dateKey(week[0]));
+  const selected = week.find((date) => dateKey(date) === selectedDate) ?? week[0];
+  const selectedDay = weekDays[selected.getDay() === 0 ? 6 : selected.getDay() - 1];
+  const selectedClasses = weeklyClasses.filter((session) => session.day === selectedDay);
+
   return (
     <main>
       <section className="hero" id="top">
@@ -59,7 +93,7 @@ export default function Home() {
         <div className="scroll-cue">Scroll to discover <span>↓</span></div>
       </section>
 
-      <section className="homepage-timetable" id="timetable"><div className="container"><div className="section-heading split"><div><p className="eyebrow red"><i /> Weekly timetable</p><h2>Find your time.<br /><em>Book your flow.</em></h2></div><p>Browse the weekly Femme lineup, then choose your date and reserve through the live Wix calendar.</p></div><div className="timetable-shell"><div className="timetable-toolbar"><div><span className="live-dot" /> Wix Bookings</div><small>America/Chicago · Weekly view</small><a href={scheduleUrl} target="_top">Open full calendar ↗</a></div><div className="weekly-timetable" role="region" aria-label="Femme Kollective weekly class timetable" tabIndex={0}>{weekDays.map(day => { const sessions = weeklyClasses.filter(session => session.day === day); return <div className="timetable-day" key={day}><header><small>{day.slice(0,3)}</small><strong>{day}</strong></header><div className="timetable-day-body">{sessions.length ? sessions.map(session => <a className={`timetable-event event-${session.style}`} href={scheduleUrl} target="_top" key={`${session.name}-${session.time}`}><time>{session.time}</time><h3>{session.name}</h3><p>{session.duration}</p><span>Book Now →</span></a>) : <span className="timetable-empty">—</span>}</div></div>})}</div></div><p className="timetable-note">Wix displays the final dates, availability, and remaining spaces.</p></div></section>
+      <section className="homepage-timetable" id="timetable"><div className="container"><div className="section-heading split"><div><p className="eyebrow red"><i /> Weekly timetable</p><h2>Find your time.<br /><em>Book your flow.</em></h2></div><p>Choose a date below to see that day&apos;s classes, then tap Book Now to reserve through Wix Bookings.</p></div><div className="timetable-shell"><div className="timetable-toolbar"><div><span className="live-dot" /> Wix Bookings</div><small>America/Chicago · {formatDate(week[0])} – {formatDate(week[6])}</small><a href={scheduleUrl} target="_top">Open full calendar ↗</a></div><div className="date-picker" role="tablist" aria-label="Choose a class date">{week.map((date) => { const isSelected = dateKey(date) === selectedDate; return <button className={`date-tab ${isSelected ? "active" : ""}`} key={dateKey(date)} type="button" role="tab" aria-selected={isSelected} onClick={() => setSelectedDate(dateKey(date))}><small>{weekDays[date.getDay() === 0 ? 6 : date.getDay() - 1].slice(0, 3)}</small><strong>{date.getDate()}</strong><span>{formatDate(date).split(" ")[0]}</span></button>; })}</div><div className="selected-day-heading"><span>{selectedDay}</span><strong>{formatDate(selected)}</strong></div><div className="selected-day-classes" role="region" aria-live="polite" aria-label={`Classes on ${selectedDay}, ${formatDate(selected)}`}>{selectedClasses.length ? selectedClasses.map(session => <a className={`timetable-event event-${session.style}`} href={scheduleUrl} target="_top" key={`${dateKey(selected)}-${session.name}-${session.time}`}><time>{session.time}</time><h3>{session.name}</h3><p>{session.duration}</p><span>Book Now →</span></a>) : <span className="timetable-empty">No classes scheduled for this date.</span>}</div></div><p className="timetable-note">Select another date to view that day&apos;s lineup. Wix displays final availability and remaining spaces.</p></div></section>
 
       <section className="testimonials" aria-label="The Femme Kollective promise">
         <div className="container"><p className="eyebrow red"><i /> The Femme feeling</p><div className="section-heading"><h2>You&apos;re not just joining<br />a studio. You&apos;re joining <em>the Kollective.</em></h2><p>Confidence brings you through the door. Sisterhood is why you stay.</p></div>
