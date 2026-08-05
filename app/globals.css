@@ -167,3 +167,4 @@ html, body { overflow-x: hidden; }
   .payment-callout > p { max-width: none; }
   .payment-callout .button { grid-column: 1 / -1; justify-self: start; }
 }
+.timetable-event.is-past{opacity:.38;filter:grayscale(.7);cursor:not-allowed}.timetable-event.is-past span{color:#999}

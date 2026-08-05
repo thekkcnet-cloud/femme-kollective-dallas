@@ -14,6 +14,7 @@ const departments = [
 // keeps the booking flow from being trapped inside the custom-element iframe.
 const bookingUrl = "https://www.thekkc.net/schedule";
 const scheduleUrl = bookingUrl;
+const classBookingSlugs: Record<string, string> = { "Absolute Beginner Pole": "absolute-beginner-pole", "Pole Dance Choreography": "pole-dance-choreography", "Lap/Chair Dance": "lap-chair-dance", "Intro to Heels": "intro-to-heels", "Beginner Heels": "beginner-heels", Floorwork: "floorwork", "Flex Appeal": "flex-appeal" };
 const checkoutBase = "https://www.thekkc.net/pricing-plans/plan-customization";
 const firstTimerCheckout = `${checkoutBase}?planId=95589e75-4097-4581-bd41-b97a4bb1dff3&pricingVariantId=16e5871b-5040-445d-a5c9-37207e6155bf`;
 const weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
@@ -45,6 +46,21 @@ function formatDate(date: Date) {
 
 function dateKey(date: Date) {
   return date.toISOString().slice(0, 10);
+}
+
+function isPastSession(date: Date, time: string) {
+  const match = time.match(/(\d+):(\d+)\s*(AM|PM)/i);
+  if (!match) return false;
+  let hour = Number(match[1]);
+  if (match[3].toUpperCase() === "PM" && hour !== 12) hour += 12;
+  if (match[3].toUpperCase() === "AM" && hour === 12) hour = 0;
+  const end = new Date(date); end.setHours(hour, Number(match[2]) + 60, 0, 0);
+  return end.getTime() < Date.now();
+}
+
+function classBookingUrl(name: string) {
+  const slug = classBookingSlugs[name];
+  return slug ? `https://www.thekkc.net/booking-form?referral=weekly_timetable_widget&service=${slug}` : scheduleUrl;
 }
 
 const plans = [
@@ -106,7 +122,7 @@ export default function Home() {
         <div className="scroll-cue">Scroll to discover <span>↓</span></div>
       </section>
 
-      <section className="homepage-timetable" id="timetable"><div className="container"><div className="section-heading split"><div><p className="eyebrow red"><i /> Weekly timetable</p><h2>Find your time.<br /><em>Book your flow.</em></h2></div><p>Choose a date below to see that day&apos;s classes, then tap Book Now to reserve through Wix Bookings.</p></div><div className="timetable-shell"><div className="timetable-toolbar"><div><span className="live-dot" /> Wix Bookings</div><small>America/Chicago · {formatDate(week[0])} – {formatDate(week[6])}</small><a href={scheduleUrl} target="_top">Open full calendar ↗</a></div><div className="date-picker" role="tablist" aria-label="Choose a class date">{week.map((date) => { const isSelected = dateKey(date) === selectedDate; return <button className={`date-tab ${isSelected ? "active" : ""}`} key={dateKey(date)} type="button" role="tab" aria-selected={isSelected} onClick={() => setSelectedDate(dateKey(date))}><small>{weekDays[date.getDay() === 0 ? 6 : date.getDay() - 1].slice(0, 3)}</small><strong>{date.getDate()}</strong><span>{formatDate(date).split(" ")[0]}</span></button>; })}</div><div className="selected-day-heading"><span>{selectedDay}</span><strong>{formatDate(selected)}</strong></div><div className="selected-day-classes" role="region" aria-live="polite" aria-label={`Classes on ${selectedDay}, ${formatDate(selected)}`}>{selectedClasses.length ? selectedClasses.map(session => <a className={`timetable-event event-${session.style}`} href={scheduleUrl} target="_top" key={`${dateKey(selected)}-${session.name}-${session.time}`}><time>{session.time}</time><h3>{session.name}</h3><p>{session.duration}</p><span>Book Now →</span></a>) : <span className="timetable-empty">No classes scheduled for this date.</span>}</div></div><p className="timetable-note">Select another date to view that day&apos;s lineup. Wix displays final availability and remaining spaces.</p></div></section>
+      <section className="homepage-timetable" id="timetable"><div className="container"><div className="section-heading split"><div><p className="eyebrow red"><i /> Weekly timetable</p><h2>Find your time.<br /><em>Book your flow.</em></h2></div><p>Choose a date below to see that day&apos;s classes, then tap Book Now to reserve through Wix Bookings.</p></div><div className="timetable-shell"><div className="timetable-toolbar"><div><span className="live-dot" /> Wix Bookings</div><small>America/Chicago · {formatDate(week[0])} – {formatDate(week[6])}</small><a href={scheduleUrl} target="_top">Open full calendar ↗</a></div><div className="date-picker" role="tablist" aria-label="Choose a class date">{week.map((date) => { const isSelected = dateKey(date) === selectedDate; return <button className={`date-tab ${isSelected ? "active" : ""}`} key={dateKey(date)} type="button" role="tab" aria-selected={isSelected} onClick={() => setSelectedDate(dateKey(date))}><small>{weekDays[date.getDay() === 0 ? 6 : date.getDay() - 1].slice(0, 3)}</small><strong>{date.getDate()}</strong><span>{formatDate(date).split(" ")[0]}</span></button>; })}</div><div className="selected-day-heading"><span>{selectedDay}</span><strong>{formatDate(selected)}</strong></div><div className="selected-day-classes" role="region" aria-live="polite" aria-label={`Classes on ${selectedDay}, ${formatDate(selected)}`}>{selectedClasses.length ? selectedClasses.map(session => isPastSession(selected, session.time) ? <div className={`timetable-event event-${session.style} is-past`} aria-disabled="true" key={`${dateKey(selected)}-${session.name}-${session.time}`}><time>{session.time}</time><h3>{session.name}</h3><p>{session.duration}</p><span>Class ended</span></div> : <a className={`timetable-event event-${session.style}`} href={classBookingUrl(session.name)} target="_top" key={`${dateKey(selected)}-${session.name}-${session.time}`}><time>{session.time}</time><h3>{session.name}</h3><p>{session.duration}</p><span>Book Now →</span></a>) : <span className="timetable-empty">No classes scheduled for this date.</span>}</div></div><p className="timetable-note">Select another date to view that day&apos;s lineup. Wix displays final availability and remaining spaces.</p></div></section>
 
       <section className="testimonials" aria-label="The Femme Kollective promise">
         <div className="container"><p className="eyebrow red"><i /> The Femme feeling</p><div className="section-heading"><h2>You&apos;re not just joining<br />a studio. You&apos;re joining <em>the Kollective.</em></h2><p>Confidence brings you through the door. Sisterhood is why you stay.</p></div>
