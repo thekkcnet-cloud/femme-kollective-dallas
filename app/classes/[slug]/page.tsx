@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 
-const scheduleUrl = "https://www.thekkc.net/booking-form?referral=weekly_timetable_widget";
+const scheduleUrl = "https://www.thekkc.net/booking-form";
 const weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] as const;
 
 const classes = {
