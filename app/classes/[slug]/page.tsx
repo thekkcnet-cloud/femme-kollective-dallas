@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 
-const scheduleUrl = "https://www.thekkc.net/booking-form";
+const scheduleUrl = "https://www.thekkc.net/schedule";
 const weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] as const;
 
 const classes = {
