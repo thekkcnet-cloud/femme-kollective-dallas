@@ -60,7 +60,7 @@ function isPastSession(date: Date, time: string) {
 
 function classBookingUrl(name: string) {
   const slug = classBookingSlugs[name];
-  return slug ? `https://www.thekkc.net/booking-form?referral=weekly_timetable_widget&service=${slug}` : scheduleUrl;
+  return slug ? `https://www.thekkc.net/booking-calendar/${slug}?referral=weekly_timetable_widget` : scheduleUrl;
 }
 
 const plans = [
