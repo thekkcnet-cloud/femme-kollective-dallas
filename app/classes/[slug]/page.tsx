@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 
-const scheduleUrl = "https://www.thekkc.net/schedule";
+const scheduleUrl = "https://www.thekkc.net/booking-form?referral=booking_calendar_widget";
 const classBookingSlugs: Record<string, string> = { "Absolute Beginner Pole": "absolute-beginner-pole", "Pole Dance Choreography": "pole-dance-choreography", "Lap/Chair Dance": "lap-chair-dance", "Intro to Heels": "intro-to-heels", "Beginner Heels": "beginner-heels", Floorwork: "floorwork", "Flex Appeal": "flex-appeal" };
-const classBookingUrl = (name: string) => `https://www.thekkc.net/booking-calendar/${classBookingSlugs[name]}?referral=weekly_timetable_widget`;
+const classBookingUrl = (name: string) => "https://www.thekkc.net/booking-form?referral=booking_calendar_widget";
 const weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] as const;
 
 const classes = {

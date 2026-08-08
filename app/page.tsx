@@ -12,7 +12,7 @@ const departments = [
 
 // All class reservations stay on the Wix booking form. The top-level target
 // keeps the booking flow from being trapped inside the custom-element iframe.
-const bookingUrl = "https://www.thekkc.net/schedule";
+const bookingUrl = "https://www.thekkc.net/booking-form?referral=booking_calendar_widget";
 const scheduleUrl = bookingUrl;
 const classBookingSlugs: Record<string, string> = { "Absolute Beginner Pole": "absolute-beginner-pole", "Pole Dance Choreography": "pole-dance-choreography", "Lap/Chair Dance": "lap-chair-dance", "Intro to Heels": "intro-to-heels", "Beginner Heels": "beginner-heels", Floorwork: "floorwork", "Flex Appeal": "flex-appeal" };
 const checkoutBase = "https://www.thekkc.net/pricing-plans/plan-customization";
@@ -59,8 +59,7 @@ function isPastSession(date: Date, time: string) {
 }
 
 function classBookingUrl(name: string) {
-  const slug = classBookingSlugs[name];
-  return slug ? `https://www.thekkc.net/booking-calendar/${slug}?referral=weekly_timetable_widget` : scheduleUrl;
+  return "https://www.thekkc.net/booking-form?referral=booking_calendar_widget";
 }
 
 const plans = [
