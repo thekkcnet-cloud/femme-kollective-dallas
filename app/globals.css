@@ -169,3 +169,43 @@ html, body { overflow-x: hidden; }
 }
 .timetable-event.is-past{opacity:.38;filter:grayscale(.7);cursor:not-allowed}.timetable-event.is-past span{color:#999}
 .flex-passes>a:not(.button){display:block;color:inherit}.passes-page{min-height:100vh;background:var(--ink);color:#fff;padding-bottom:100px}.passes-hero{padding:110px 0 65px}.passes-hero h1{font-size:clamp(58px,8vw,105px);line-height:.86;margin:0 0 25px}.passes-hero h1 em{color:#df283a}.passes-hero>p:last-child{max-width:480px;color:#bbb;line-height:1.7}.passes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.passes-card{padding:30px;background:#141415;border:1px solid #3d2227;min-height:250px;display:flex;flex-direction:column;transition:.2s}.passes-card:hover{border-color:#df3a4d;transform:translateY(-3px);box-shadow:0 12px 30px rgba(155,17,30,.25)}.passes-card small{color:#ef5261;letter-spacing:.14em;font-weight:700}.passes-card h2{font-size:32px;margin:28px 0 12px}.passes-card strong{font-family:"Playfair Display",Georgia,serif;font-size:46px}.passes-card p{color:#aaa;font-size:12px;line-height:1.6}.passes-card span{margin-top:auto;color:#ef5261;font-weight:700;font-size:12px}.pass-secondary{background:#211014}.pass-secondary strong{color:#fff}@media(max-width:720px){.passes-hero{padding:75px 0 45px}.passes-grid{grid-template-columns:1fr}}
+
+/* User Experience & Accessibility Enhancements */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible {
+  outline: 2px solid #df283a !important;
+  outline-offset: 3px !important;
+}
+.button:active {
+  transform: translateY(1px) scale(0.98) !important;
+}
+.date-tab {
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+.date-tab:hover:not(.active) {
+  background: #251216;
+  border-color: #9b111e;
+}
+.date-tab:active {
+  transform: scale(0.96);
+}
+.flex-passes article {
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.flex-passes article:hover {
+  transform: translateY(-3px);
+  border-color: #9b111e;
+  box-shadow: 0 10px 24px rgba(155, 17, 30, 0.15);
+}
+.plan {
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.plan:hover {
+  transform: translateY(-4px);
+  border-color: #9b111e;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
+}
+.plan.vip:hover {
+  border-color: #d4af37;
+  box-shadow: 0 14px 36px rgba(212, 175, 55, 0.2);
+}
+
